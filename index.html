@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ler &amp; Aprender — Início</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/inicio.css?v=comando3">
+</head>
+<body class="page-inicio">
+  <a href="#conteudo" class="skip sr-only-focusable"><span>Pular para o conteúdo</span></a>
+
+  <div id="acesso-overlay" class="acesso-overlay" aria-hidden="true" hidden></div>
+
+  <header class="topo">
+    <div class="topo__inner">
+      <a href="index.html" class="marca marca--kids"><span class="marca__ico" aria-hidden="true">📖</span> Ler &amp; Aprender</a>
+      <button type="button" class="menu-btn" id="btn-menu" aria-expanded="false" aria-controls="nav-principal">
+        <span class="menu-btn__bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Abrir menu</span>
+      </button>
+      <nav class="nav" id="nav-principal" aria-label="Principal">
+        <ul class="nav__list nav__list--topo">
+          <li>
+            <a href="#como-funciona" class="nav__link nav__anchor">Como funciona</a>
+          </li>
+          <li class="nav__acesso-slot nav__acesso-slot--auth-pending" id="nav-acesso-slot">
+            <div id="header-entrar-guest" class="nav__entrar-guest" hidden>
+              <button type="button" class="btn-nav-entrar" id="btn-acesso-dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="painel-acesso">
+                Entrar
+              </button>
+              <div id="painel-acesso" class="acesso-popover" role="dialog" aria-modal="false" aria-label="Escolha como você acessa" hidden>
+                <p class="acesso-popover__titulo">Como você quer entrar?</p>
+                <div class="acesso-popover__grid">
+                  <a href="acesso-aluno.html" class="acesso-popover__card acesso-popover__card--aluno">
+                    <span class="acesso-popover__ico" aria-hidden="true">🎒</span>
+                    <span class="acesso-popover__selo">Sou aluno</span>
+                    <span class="acesso-popover__texto">Tenho um código da minha turma</span>
+                  </a>
+                  <a href="login.html" class="acesso-popover__card acesso-popover__card--prof">
+                    <span class="acesso-popover__ico" aria-hidden="true">👨‍🏫</span>
+                    <span class="acesso-popover__selo">Sou professor</span>
+                    <span class="acesso-popover__texto">Entrar no painel</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div id="header-auth-user" class="header-auth-user" hidden>
+              <button
+                type="button"
+                class="btn-nav-painel btn-nav-painel--trigger"
+                id="btn-header-user-menu"
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-controls="header-user-menu"
+                aria-label="Menu da conta">
+                <span class="btn-nav-painel__avatar" id="header-prof-iniciais" aria-hidden="true"></span>
+                <span class="btn-nav-painel__col">
+                  <span class="btn-nav-painel__nome" id="header-prof-nome"></span>
+                  <span class="btn-nav-painel__hint"><span aria-hidden="true">👨‍🏫</span> Meu painel</span>
+                </span>
+                <span class="btn-nav-painel__chev" aria-hidden="true">▾</span>
+              </button>
+              <div id="header-user-menu" class="header-user-menu" role="menu" aria-label="Ações da conta" hidden>
+                <a href="painel-professor.html" class="header-user-menu__item" role="menuitem">Abrir painel do professor</a>
+                <button type="button" class="header-user-menu__item header-user-menu__item--sair" role="menuitem" id="btn-header-sair">
+                  Sair
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero hero--kids" aria-labelledby="hero-titulo">
+      <div class="hero__decor hero__decor--dots" aria-hidden="true"></div>
+      <div class="hero__decor hero__decor--organic hero__decor--organic-1" aria-hidden="true"></div>
+      <div class="hero__decor hero__decor--organic hero__decor--organic-2" aria-hidden="true"></div>
+      <div class="hero__decor hero__decor--circle hero__decor--circle-1" aria-hidden="true"></div>
+      <div class="hero__decor hero__decor--circle hero__decor--circle-2" aria-hidden="true"></div>
+      <div class="hero__fundos" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="blob blob--3"></span>
+        <span class="blob blob--4"></span>
+      </div>
+      <div class="hero__inner hero__grid">
+        <div class="hero__texto-bloco">
+          <p class="hero__selo">Bem-vindo à plataforma 👋</p>
+          <p class="hero__badge-leve"><span aria-hidden="true">✨</span> Simples, moderno e divertido</p>
+          <h1 id="hero-titulo" class="hero__titulo">
+            <span class="hero-highlight">Atividades e leituras</span>
+            <span class="hero-titulo__continuacao">em um ambiente simples, moderno e divertido.</span>
+          </h1>
+          <p class="hero__sub">Digite o código da turma, escolha seu nome e comece a aprender de forma simples e organizada.</p>
+          <p class="hero__apoio">Uma plataforma leve para leitura, atividades e acompanhamento do aprendizado.</p>
+          <div class="hero__acoes hero__acoes--unico">
+            <span class="btn-hero-primario-wrap">
+              <a href="acesso-aluno.html" class="btn-hero-primario">Entrar na turma</a>
+            </span>
+          </div>
+        </div>
+        <div class="hero__arte" aria-hidden="true">
+          <div class="hero__circulo hero__circulo--1">📚</div>
+          <div class="hero__circulo hero__circulo--2">✨</div>
+          <div class="hero__circulo hero__circulo--3">📝</div>
+          <div class="hero__circulo hero__circulo--4">🌈</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="passos-wrap secao-respiro" id="como-funciona" aria-labelledby="passos-titulo">
+      <div class="passos-kids">
+        <div class="passos-kids__inner">
+          <h2 id="passos-titulo" class="passos-kids__titulo">Como funciona? Três passos!</h2>
+          <ul class="passos-kids__lista">
+            <li class="passo-cartao passo-cartao-glass js-reveal" data-reveal style="--i: 0;">
+              <div class="passo-cartao-glass__top">
+                <span class="passo-icone passo-icone--float" aria-hidden="true">🔑</span>
+                <span class="passo-cartao-glass__etapa">PASSO 1</span>
+              </div>
+              <h3 class="passo-cartao-glass__tit">Receba o código da turma</h3>
+              <p class="passo-cartao-glass__txt">Use o código compartilhado pelo professor para entrar rapidamente.</p>
+            </li>
+            <li class="passo-cartao passo-cartao-glass js-reveal" data-reveal style="--i: 1;">
+              <div class="passo-cartao-glass__top">
+                <span class="passo-icone passo-icone--float" aria-hidden="true">👤</span>
+                <span class="passo-cartao-glass__etapa">PASSO 2</span>
+              </div>
+              <h3 class="passo-cartao-glass__tit">Escolha seu nome na lista</h3>
+              <p class="passo-cartao-glass__txt">Encontre seu nome cadastrado e confirme seu acesso.</p>
+            </li>
+            <li class="passo-cartao passo-cartao-glass js-reveal" data-reveal style="--i: 2;">
+              <div class="passo-cartao-glass__top">
+                <span class="passo-icone passo-icone--float" aria-hidden="true">🏆</span>
+                <span class="passo-cartao-glass__etapa">PASSO 3</span>
+              </div>
+              <h3 class="passo-cartao-glass__tit">Leia, responda e acompanhe seu progresso</h3>
+              <p class="passo-cartao-glass__txt">Participe das atividades e acompanhe seu desempenho de forma simples.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="prof-premium-wrap secao-respiro" aria-labelledby="titulo-prof">
+      <div class="prof-premium-layout">
+        <article class="faixa-prof__card faixa-prof__card--premium">
+          <div class="prof-premium__header">
+            <span class="faixa-prof__badge-ico" aria-hidden="true">👩‍🏫</span>
+            <div>
+              <span class="faixa-prof__tag">Painel profissional</span>
+              <h2 id="titulo-prof" class="faixa-prof__titulo">Para professores</h2>
+              <p class="faixa-prof__lead">Organize turmas, atividades e acompanhe o aprendizado em um só lugar.</p>
+            </div>
+          </div>
+          <p class="faixa-prof__texto-main faixa-prof__texto-main--solo">
+            Cadastre a turma com a lista de alunos, publique leituras e atividades, e acompanhe o aprendizado em tempo real. Acesso seguro e acompanhamento em um só lugar.
+          </p>
+          <a href="login.html" class="btn-faixa-prof btn-faixa-prof--premium">Acessar painel</a>
+        </article>
+
+        <div class="prof-mock-dash" aria-hidden="true">
+          <div class="prof-mock-dash__tit">
+            <span class="prof-mock-dash__pulso"></span>
+            Resumo · Turma 5A · ilustrativo
+          </div>
+          <div class="prof-mock-kpis">
+            <div class="prof-mock-kpi">
+              <span class="prof-mock-kpi__val">24</span>
+              <span class="prof-mock-kpi__lab">Alunos</span>
+            </div>
+            <div class="prof-mock-kpi prof-mock-kpi--highlight">
+              <span class="prof-mock-kpi__val">87%</span>
+              <span class="prof-mock-kpi__lab">Ativos</span>
+            </div>
+          </div>
+          <div class="prof-mock-grafico">
+            <span class="prof-mock-grafico__tit">Envios da semana</span>
+            <div class="prof-mock-barras">
+              <div class="prof-mock-bar" style="--h: 45%;"></div>
+              <div class="prof-mock-bar" style="--h: 70%;"></div>
+              <div class="prof-mock-bar prof-mock-bar--accent" style="--h: 92%;"></div>
+              <div class="prof-mock-bar" style="--h: 65%;"></div>
+              <div class="prof-mock-bar" style="--h: 58%;"></div>
+            </div>
+          </div>
+          <ul class="prof-mock-lista">
+            <li class="prof-mock-lista__item"><span class="prof-mock-check">✓</span> Ana C.</li>
+            <li class="prof-mock-lista__item"><span class="prof-mock-check">✓</span> Bruno L.</li>
+            <li class="prof-mock-lista__item"><span class="prof-mock-check prof-mock-check--muted">⋯</span> Carla S.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__inner">
+      <p class="rodape__copy">© <span id="ano-atual"></span> Ler &amp; Aprender · Projeto educacional</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/sessao.js?v=comando11"></script>
+  <script src="js/inicio.js?v=comando2" defer></script>
+</body>
+</html>

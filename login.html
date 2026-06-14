@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login professor — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/acesso.css?v=comando1">
+</head>
+<body class="page-acesso page-acesso--login">
+  <a href="#painel" class="skip">Ir para o formulário</a>
+
+  <header class="acesso-topo acesso-topo--login">
+    <div class="acesso-topo__marca-wrap">
+      <a href="index.html" class="acesso-topo__marca">📖 Ler &amp; Aprender</a>
+      <p class="acesso-topo__selo">Painel do Professor</p>
+    </div>
+    <div class="login-badge" role="note" aria-label="Informação de acesso">
+      <p class="login-badge__tit">🔒 Área exclusiva para professores</p>
+      <p class="login-badge__sub">Alunos acessam pela opção ‘Sou aluno’.</p>
+    </div>
+  </header>
+
+  <main class="acesso-main" id="painel">
+    <div class="acesso-card acesso-card--login">
+      <h1 class="painel__titulo">Acessar painel</h1>
+      <p class="painel__sub">Entre com seu e-mail e senha para acessar o painel.</p>
+      <form id="form-login" class="form" novalidate>
+        <div class="field">
+          <label for="login-email">E-mail</label>
+          <input type="email" id="login-email" name="email" autocomplete="username" required placeholder="seu@email.com">
+          <span class="field__erro" id="login-email-erro" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="login-senha">Senha</label>
+          <div class="field-senha-wrap">
+            <input type="password" id="login-senha" name="password" autocomplete="current-password" required minlength="6" placeholder="••••••••">
+            <button type="button" class="field-senha-toggle" id="btn-toggle-senha" aria-label="Mostrar senha" aria-pressed="false" title="Mostrar senha">
+              <span aria-hidden="true">👁️</span>
+            </button>
+          </div>
+          <span class="field__erro" id="login-senha-erro" role="alert"></span>
+        </div>
+        <p class="form__msg" id="login-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn--prim" id="login-submit">Entrar</button>
+      </form>
+      <p class="login-esqueci-wrap">
+        <button type="button" class="login-esqueci" id="btn-toggle-recuperar" aria-expanded="false" aria-controls="bloco-recuperar">
+          Esqueci minha senha
+        </button>
+      </p>
+      <div id="bloco-recuperar" class="acesso-recuperar" hidden>
+        <p class="acesso-recuperar__intro">
+          Digite o <strong>e-mail da sua conta</strong>. Se estiver cadastrado, você receberá um link para redefinir a senha (verifique também o spam).
+        </p>
+        <form id="form-recuperar-senha" class="form" novalidate>
+          <div class="field">
+            <label for="recuperar-email">E-mail</label>
+            <input type="email" id="recuperar-email" name="recuperarEmail" autocomplete="email" maxlength="254" placeholder="seu@email.com">
+            <span class="field__erro" id="recuperar-email-erro" role="alert"></span>
+          </div>
+          <p class="form__msg" id="recuperar-msg" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn btn--sec" id="recuperar-submit">Enviar link de redefinição</button>
+        </form>
+      </div>
+      <nav class="acesso-links-ghost" aria-label="Outras opções de acesso">
+        <a href="acesso-aluno.html" class="acesso-link-ghost">Sou aluno</a>
+        <a href="cadastro.html" class="acesso-link-ghost">Criar conta</a>
+        <a href="index.html" class="acesso-link-ghost">Voltar</a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- Firebase (Auth + Firestore) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando9"></script>
+  <script src="js/sessao.js?v=comando9"></script>
+  <script src="js/login.js?v=comando1" defer></script>
+</body>
+</html>

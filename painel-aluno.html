@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do aluno — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/painel.css">
+  <link rel="stylesheet" href="css/aluno-divertido.css">
+</head>
+<body class="page-painel page-painel--aluno">
+  <a href="#main" class="skip">Ir para o conteúdo</a>
+
+  <div class="painel-shell painel-shell--largo">
+    <header class="painel-topo">
+      <a href="index.html" class="painel-topo__marca">📖 Ler &amp; Aprender</a>
+      <p class="painel-topo__user"><strong id="painel-usuario-email">—</strong></p>
+      <div class="painel-topo__nav">
+        <a href="acesso-aluno.html?logout=1" id="link-trocar">Trocar nome ou turma</a>
+        <button type="button" class="btn-sair" id="btn-sair">Sair</button>
+      </div>
+    </header>
+
+    <main id="main" class="painel-card painel-card--destaque painel-card--full">
+      <span class="painel-badge">Área do aluno</span>
+      <h1 class="painel-titulo-hero">Suas atividades</h1>
+      <p class="painel-intro">Visualize as atividades, responda e veja a <strong>correção automática</strong> e a <strong>pontuação</strong> nas de múltipla escolha. Atividades antigas só com texto livre não recebem nota automática.</p>
+
+      <section id="aluno-gamificacao" class="aluno-gamificacao" aria-label="Seu progresso" hidden>
+        <h2 class="painel-titulo-sec painel-titulo-sec--menor">Seu progresso</h2>
+        <div class="aluno-gamificacao__grid">
+          <div class="aluno-gamificacao__card">
+            <span class="aluno-gamificacao__lab">Sua posição</span>
+            <strong id="alu-posicao" class="aluno-gamificacao__val">—</strong>
+          </div>
+          <div class="aluno-gamificacao__card">
+            <span class="aluno-gamificacao__lab">Pontos</span>
+            <strong id="alu-pontos" class="aluno-gamificacao__val">0</strong>
+          </div>
+          <div class="aluno-gamificacao__card">
+            <span class="aluno-gamificacao__lab">Medalha</span>
+            <strong id="alu-medalha" class="aluno-gamificacao__val">📖</strong>
+          </div>
+        </div>
+        <p id="alu-gamificacao-msg" class="aluno-gamificacao__msg"></p>
+        <div class="progresso-resposta progresso-resposta--gamificacao">
+          <div class="progresso-resposta__top">
+            <span class="progresso-resposta__label">Progresso na turma</span>
+            <span class="progresso-resposta__pct" id="alu-progresso-pct">0%</span>
+          </div>
+          <div class="progresso-resposta__track" aria-hidden="true">
+            <div class="progresso-resposta__fill" id="alu-progresso-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="secao-leituras-aluno" class="secao-leituras-aluno" aria-labelledby="titulo-leituras-aluno">
+        <h2 class="painel-titulo-sec" id="titulo-leituras-aluno">📚 Leituras da Turma</h2>
+        <div id="leituras-aluno-loading" class="leituras-aluno-loading" hidden aria-hidden="true">
+          <div class="monitor-skeleton">
+            <div class="skeleton-grid skeleton-grid--leituras">
+              <div class="skeleton-box"></div>
+              <div class="skeleton-box"></div>
+              <div class="skeleton-box"></div>
+            </div>
+          </div>
+        </div>
+        <div id="lista-leituras-aluno" class="grid-leituras" aria-live="polite"></div>
+        <p class="lista-vazia lista-vazia--centro" id="vazio-leituras-aluno" hidden role="status">Nenhuma leitura disponível para sua turma ainda 📚</p>
+      </section>
+
+      <ul class="lista-atividades lista-atividades--aluno" id="lista-atividades-aluno"></ul>
+      <p class="lista-vazia" id="vazio-atividades-aluno" hidden>Nenhuma atividade disponível ainda. Quando um professor criar uma, ela aparecerá aqui.</p>
+    </main>
+  </div>
+
+  <div id="modal-leitura-aluno" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-leitura-aluno-titulo" aria-modal="true">
+      <h3 id="modal-leitura-aluno-titulo" class="ui-modal__titulo"></h3>
+      <p class="field-hint" id="modal-leitura-aluno-desc" hidden></p>
+      <div id="modal-leitura-aluno-corpo" class="modal-leitura-aluno-corpo"></div>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="modal-leitura-aluno-fechar">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando5"></script>
+  <script src="js/turmas-firestore.js?v=comando5"></script>
+  <script src="js/atividades-firestore.js?v=comando10"></script>
+  <script src="js/respostas-firestore.js?v=comando5"></script>
+  <script src="js/sessao.js?v=comando11"></script>
+  <script src="js/rich-text-utils.js?v=comando5"></script>
+  <script src="js/leituras-firestore.js?v=comando5"></script>
+  <script src="js/gamificacao.js"></script>
+  <script src="js/painel-aluno.js?v=comando7" defer></script>
+  <script src="js/painel-aluno-leituras.js?v=comando5" defer></script>
+</body>
+</html>

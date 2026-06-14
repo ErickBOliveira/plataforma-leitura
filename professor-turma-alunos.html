@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alunos da turma — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/painel.css?v=comando36">
+</head>
+<body class="page-painel page-painel--professor">
+  <a href="#main" class="skip">Ir ao conteúdo</a>
+
+  <div class="painel-shell painel-shell--largo">
+    <header class="painel-topo">
+      <a href="painel-professor.html" class="painel-topo__marca">← Centro de Comando</a>
+      <p class="painel-topo__user">Turma <strong id="turma-titulo-cab">—</strong> · <span id="painel-usuario-email">—</span></p>
+      <button type="button" class="btn-sair btn-sair--discreto" id="btn-sair">Sair</button>
+    </header>
+
+    <div class="toolbar-container" role="region" aria-label="Navegação e ações do painel">
+      <nav class="toolbar-container__nav prof-nav" aria-label="Navegação do professor">
+        <a href="painel-professor.html" class="prof-nav__link" data-prof-nav="comando">Centro de Comando</a>
+      </nav>
+      <div class="toolbar-container__acoes" aria-label="Ações rápidas">
+        <a href="professor-atividade-nova.html" class="toolbar-btn btn-outline" data-prof-acao="atividade">
+          <span class="toolbar-btn__ico" aria-hidden="true">➕</span>
+          <span class="toolbar-btn__txt">Nova atividade</span>
+        </a>
+      </div>
+    </div>
+
+    <main id="main" class="painel-card">
+      <div class="secao-cab secao-cab--wrap">
+        <div>
+          <h1 class="painel-titulo-sec">Gerenciar turma</h1>
+          <p class="painel-intro painel-intro--compacto">
+            Código: <strong id="turma-codigo-label">—</strong> ·
+            <span id="turma-contador">0 alunos</span>
+          </p>
+        </div>
+        <div class="secao-cab__acoes">
+          <button type="button" class="btn-primario btn-primario--compacto" id="btn-add-aluno">+ Aluno</button>
+          <button type="button" class="btn-secundario btn-secundario--compacto" id="btn-importar-lista">Importar lista</button>
+        </div>
+      </div>
+
+      <div class="alunos-toolbar" id="alunos-toolbar">
+        <div class="alunos-toolbar__busca">
+          <label class="visually-hidden" for="busca-aluno">Buscar aluno</label>
+          <input type="search" id="busca-aluno" class="alunos-busca-input" placeholder="Buscar aluno..." autocomplete="off" maxlength="80">
+        </div>
+        <div class="alunos-toolbar__ordem">
+          <label class="monitor-label" for="alunos-ordenacao">Ordenar</label>
+          <select id="alunos-ordenacao" class="alunos-ordem-select">
+            <option value="nome">Nome (Ordem alfabética)</option>
+            <option value="pontos">Maior pontuação (Maior XP)</option>
+            <option value="ativos">Mais ativos (Mais atividades)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="lista-alunos-loading" class="monitor-skeleton" hidden aria-hidden="true">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+      </div>
+
+      <ul id="lista-alunos-turma" class="lista-alunos-cards" aria-live="polite"></ul>
+      <p class="lista-vazia lista-vazia--estado" id="vazio-alunos" hidden>Nenhum item cadastrado ainda.<span class="lista-vazia__hint">Adicione alunos individualmente ou importe uma lista.</span></p>
+      <p class="lista-vazia lista-vazia--estado" id="vazio-alunos-busca" hidden role="status">Nenhum aluno encontrado na busca.</p>
+    </main>
+  </div>
+
+  <!-- Modal importar alunos (turma atual) -->
+  <div id="modal-importar-alunos-turma" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-importar-alunos-titulo" aria-modal="true">
+      <h3 id="modal-importar-alunos-titulo" class="ui-modal__titulo">👥 Importar lista de alunos</h3>
+      <p class="field-hint">Turma: <strong id="importar-turma-nome-label">—</strong></p>
+      <div class="field-painel">
+        <label for="importar-texto">Nomes dos alunos</label>
+        <textarea id="importar-texto" class="modal-importar-textarea" rows="8" maxlength="120000" placeholder="Digite um nome por linha...&#10;&#10;Exemplo:&#10;Ana Silva&#10;Carlos Eduardo&#10;Mariana Costa"></textarea>
+      </div>
+      <p class="importar-aviso-pedagogico">Os alunos serão cadastrados automaticamente nesta turma e poderão acessar as atividades utilizando apenas o nome e o código da turma.</p>
+      <p class="form-painel__msg" id="importar-msg" role="status" aria-live="polite"></p>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="btn-importar-cancelar">Cancelar</button>
+        <button type="button" class="btn-primario" id="btn-importar-confirmar">Cadastrar alunos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal aluno -->
+  <div id="modal-aluno" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card" role="dialog" aria-labelledby="modal-aluno-titulo" aria-modal="true">
+      <h3 id="modal-aluno-titulo" class="ui-modal__titulo">Adicionar aluno</h3>
+      <form id="form-aluno-modal" class="form-painel" novalidate>
+        <div class="field-painel">
+          <label for="modal-aluno-nome">Nome completo</label>
+          <input type="text" id="modal-aluno-nome" maxlength="80" required autocomplete="name">
+        </div>
+        <p class="form-painel__msg" id="modal-aluno-msg" role="status"></p>
+        <div class="form-painel__acoes">
+          <button type="button" class="btn-secundario" id="modal-aluno-cancelar">Cancelar</button>
+          <button type="submit" class="btn-primario" id="modal-aluno-salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando9"></script>
+  <script src="js/turmas-firestore.js?v=comando15"></script>
+  <script src="js/atividades-firestore.js?v=comando4"></script>
+  <script src="js/respostas-firestore.js?v=comando4"></script>
+  <script src="js/sessao.js?v=comando9"></script>
+  <script src="js/gamificacao.js"></script>
+  <script src="js/ui-feedback.js"></script>
+  <script src="js/prof-nav.js?v=2"></script>
+  <script src="js/professor-turma-alunos.js?v=comando6" defer></script>
+</body>
+</html>

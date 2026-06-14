@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro professor — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/acesso.css">
+</head>
+<body class="page-acesso">
+  <a href="#painel" class="skip">Ir para o formulário</a>
+
+  <header class="acesso-topo">
+    <a href="index.html" class="acesso-topo__marca">📖 Ler &amp; Aprender</a>
+    <p class="acesso-topo__aviso">Cadastro apenas de <strong>professor</strong> no Firebase. Alunos não criam conta — entram com nome e código da turma.</p>
+  </header>
+
+  <main class="acesso-main" id="painel">
+    <div class="acesso-card">
+      <h1 class="painel__titulo">Cadastrar professor</h1>
+      <p class="painel__sub">E-mail e senha para gerenciar atividades e turmas.</p>
+      <form id="form-cadastro" class="form" novalidate>
+        <div class="field">
+          <label for="cad-email">E-mail</label>
+          <input type="email" id="cad-email" name="email" autocomplete="email" required placeholder="seu@email.com">
+          <span class="field__erro" id="cad-email-erro" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cad-senha">Senha</label>
+          <input type="password" id="cad-senha" name="password" autocomplete="new-password" required minlength="6" placeholder="Mínimo 6 caracteres">
+          <span class="field__erro" id="cad-senha-erro" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cad-senha2">Confirmar senha</label>
+          <input type="password" id="cad-senha2" name="password2" autocomplete="new-password" required minlength="6" placeholder="Repita a senha">
+          <span class="field__erro" id="cad-senha2-erro" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cad-codigo">Código institucional</label>
+          <input type="password" id="cad-codigo" name="codigoInstitucional" autocomplete="off" required placeholder="Digite o código institucional">
+          <span class="field__erro" id="cad-codigo-erro" role="alert"></span>
+        </div>
+        <p class="form__msg" id="cad-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn--prim" id="cad-submit">Criar conta e entrar</button>
+      </form>
+      <p class="acesso-links-extra acesso-links-extra--rodape">
+        <a href="login.html">Já tenho conta</a> · <a href="acesso-aluno.html">Entrada do aluno</a> · <a href="index.html">Início</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Firebase (Auth + Firestore) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/sessao.js"></script>
+  <script src="js/cadastro.js" defer></script>
+</body>
+</html>

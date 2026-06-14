@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/painel.css?v=comando47">
+  <link rel="stylesheet" href="css/aluno-divertido.css">
+</head>
+<body class="page-painel page-painel--aluno">
+  <a href="#main" class="skip">Ir para o conteúdo</a>
+
+  <div class="painel-shell painel-shell--largo">
+    <header class="painel-topo">
+      <a href="painel-aluno.html" class="painel-topo__marca">← Painel do aluno</a>
+      <p class="painel-topo__user"><strong id="painel-usuario-email">—</strong></p>
+    </header>
+
+    <main id="main" class="painel-card">
+      <div id="bloco-erro" class="painel-alerta painel-alerta--erro" hidden></div>
+      <div id="bloco-conteudo" hidden>
+        <p class="painel-meta" id="atv-meta"></p>
+        <h1 class="painel-titulo-sec" id="atv-titulo"></h1>
+        <section id="atv-bloco-texto" class="painel-bloco-texto" hidden>
+          <h2 class="painel-subtitulo">Texto de leitura</h2>
+          <div id="atv-texto" class="painel-texto-leitura atividade-conteudo conteudo-html"></div>
+        </section>
+        <section id="atv-bloco-material-apoio" class="atv-material-apoio-aluno" hidden aria-labelledby="atv-material-apoio-titulo">
+          <h2 class="painel-subtitulo" id="atv-material-apoio-titulo">📖 Material de Apoio</h2>
+          <div id="atv-material-apoio" class="atv-material-apoio-aluno__corpo atividade-conteudo conteudo-html"></div>
+        </section>
+        <div id="area-interacao"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando5"></script>
+  <script src="js/turmas-firestore.js?v=comando3"></script>
+  <script src="js/atividades-firestore.js?v=comando10"></script>
+  <script src="js/respostas-firestore.js"></script>
+  <script src="js/sessao.js?v=comando11"></script>
+  <script src="js/rich-text-utils.js"></script>
+  <script src="js/responder-atividade.js?v=comando14" defer></script>
+</body>
+</html>

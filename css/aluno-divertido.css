@@ -1,0 +1,287 @@
+/**
+ * Camada divertida para alunos — alinhada à paleta Ler & Aprender
+ * Usar depois de theme.css + acesso.css ou painel.css
+ */
+.page-acesso.page-acesso--aluno {
+  background: radial-gradient(900px 400px at 15% -8%, rgba(79, 70, 229, 0.1), transparent),
+    radial-gradient(700px 320px at 95% 5%, rgba(250, 204, 21, 0.12), transparent),
+    radial-gradient(600px 300px at 50% 100%, rgba(34, 197, 94, 0.08), transparent),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--superficie) 100%);
+  min-height: 100vh;
+}
+
+.page-acesso--aluno .acesso-card--elevada {
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  box-shadow: var(--shadow-md);
+}
+
+.page-acesso--aluno .acesso-topo__marca {
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-yellow-soft) 0%, rgba(250, 204, 21, 0.55) 100%);
+  color: var(--color-text) !important;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+  border: 2px solid rgba(250, 204, 21, 0.65);
+}
+
+.page-acesso--aluno .acesso-topo__aviso {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  background: var(--superficie);
+  padding: 0.95rem 1.05rem;
+  border-radius: var(--radius-md);
+  border: 2px dashed rgba(79, 70, 229, 0.35);
+  color: var(--texto-suave);
+}
+
+.page-acesso--aluno .painel__titulo--hero {
+  font-family: var(--fonte-titulo), var(--fonte-corpo), sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  background: linear-gradient(115deg, var(--color-purple) 0%, var(--color-blue) 50%, var(--color-green) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-acesso--aluno .acesso-step--card {
+  background: linear-gradient(180deg, #ffffff 0%, var(--color-blue-soft) 100%);
+  border-radius: var(--radius-lg) !important;
+  border-width: 2px !important;
+  border-color: rgba(124, 58, 237, 0.2) !important;
+}
+
+.page-acesso--aluno #step-turma.acesso-step--card {
+  background: linear-gradient(180deg, #fff 0%, var(--color-yellow-soft) 100%);
+  border-color: rgba(250, 204, 21, 0.45) !important;
+}
+
+.page-acesso--aluno .acesso-step__badge {
+  font-family: var(--fonte-titulo), sans-serif;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  background: linear-gradient(145deg, var(--color-blue), var(--color-purple));
+  box-shadow: 0 4px 0 rgba(15, 23, 42, 0.12);
+}
+
+.page-acesso--aluno .acesso-step__badge--ok {
+  background: linear-gradient(145deg, var(--color-green), #15803d);
+}
+
+.page-acesso--aluno .btn--prim {
+  background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-blue) 100%);
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--fonte-titulo), sans-serif;
+  font-weight: 800 !important;
+  font-size: 1.02rem;
+  padding: 0.82rem 1.4rem !important;
+  border: none;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.page-acesso--aluno .btn--prim:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 3px 12px rgba(79, 70, 229, 0.3);
+}
+
+.page-acesso--aluno .btn--outline {
+  border-radius: var(--radius-pill) !important;
+  border-width: 2px !important;
+  font-family: var(--fonte-titulo), sans-serif;
+  font-weight: 700;
+  color: var(--color-purple) !important;
+  border-color: var(--color-purple) !important;
+}
+
+.page-acesso--aluno .acesso-links-extra a {
+  font-weight: 700;
+  color: var(--color-blue) !important;
+}
+
+.page-acesso--aluno .alu-mascotes {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.4rem;
+  margin: 0.15rem 0 0.65rem;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08));
+}
+
+.page-acesso--aluno .combo-input--selecionado {
+  border-color: var(--color-green) !important;
+  background: var(--color-green-soft) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2) !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-acesso--aluno .acesso-main--central {
+    animation: alu-page-fade 0.42s ease both;
+  }
+}
+
+@keyframes alu-page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-acesso--aluno .acesso-main--central {
+    animation: none;
+  }
+}
+
+/* Loader — livro leve */
+.alu-spinner--book {
+  flex-direction: column;
+  align-items: center;
+  padding: 0.55rem 0 0.15rem;
+  gap: 0.15rem;
+}
+
+.alu-spinner__book {
+  font-size: 1.75rem;
+  line-height: 1;
+  display: inline-block;
+  filter: drop-shadow(0 2px 8px rgba(79, 70, 229, 0.28));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .alu-spinner__book {
+    animation: alu-book-pulse 1.05s ease-in-out infinite;
+  }
+}
+
+@keyframes alu-book-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alu-spinner__book {
+    animation: none;
+  }
+}
+
+/* Código da turma — feedback */
+.page-acesso--aluno #alu-turma.alu-turma--ok {
+  border-color: var(--color-green) !important;
+  background: var(--color-green-soft, #f0fdf4) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.22) !important;
+}
+
+.page-acesso--aluno #alu-turma.alu-turma--erro {
+  border-color: #ea580c !important;
+  background: #fff7ed !important;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15) !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-acesso--aluno #alu-turma.alu-turma--shake {
+    animation: alu-shake 0.4s ease;
+  }
+}
+
+@keyframes alu-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  18% {
+    transform: translateX(-5px);
+  }
+
+  36% {
+    transform: translateX(5px);
+  }
+
+  54% {
+    transform: translateX(-3px);
+  }
+
+  72% {
+    transform: translateX(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-acesso--aluno #alu-turma.alu-turma--shake {
+    animation: none;
+  }
+}
+
+/* --------- Painel / responder aluno --------- */
+body.page-painel.page-painel--aluno {
+  background: radial-gradient(780px 360px at 0% 10%, rgba(34, 197, 94, 0.1), transparent),
+    radial-gradient(640px 300px at 100% -5%, rgba(79, 70, 229, 0.08), transparent),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--superficie) 100%);
+}
+
+.page-painel--aluno .painel-topo {
+  background: linear-gradient(90deg, var(--superficie) 0%, var(--color-green-soft) 45%, var(--color-blue-soft) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+}
+
+.page-painel--aluno .painel-topo__marca {
+  font-family: var(--fonte-titulo), var(--fonte-corpo), sans-serif;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.85rem;
+  background: var(--superficie);
+  border: 2px solid rgba(34, 197, 94, 0.35);
+}
+
+.page-painel--aluno .painel-badge {
+  background: linear-gradient(135deg, var(--color-green), var(--color-blue)) !important;
+  color: #fff !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: var(--fonte-titulo), sans-serif;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  padding: 0.38rem 1rem !important;
+}
+
+.page-painel--aluno .painel-card--destaque {
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.page-painel--aluno .painel-titulo-hero,
+.page-painel--aluno .painel-titulo-sec {
+  font-family: var(--fonte-titulo), var(--fonte-corpo), sans-serif;
+  font-weight: 800;
+}
+
+.page-painel--aluno .painel-intro {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.page-painel--aluno .btn-responder,
+.page-painel--aluno .btn-primario {
+  border-radius: var(--radius-pill) !important;
+  font-weight: 700 !important;
+}
+
+.page-painel--aluno .progresso-resposta__fill {
+  background: linear-gradient(90deg, var(--color-yellow), var(--color-green), var(--color-blue)) !important;
+}

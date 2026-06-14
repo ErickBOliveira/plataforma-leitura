@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "respostas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "turmaId", "order": "ASCENDING" },
+        { "fieldPath": "alunoDocId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "respostas",
+      "queryScope": "COLLECTION",
+      "fields": [{ "fieldPath": "atividadeId", "order": "ASCENDING" }]
+    }
+  ],
+  "fieldOverrides": []
+}

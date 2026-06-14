@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrada do aluno — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/acesso.css">
+  <link rel="stylesheet" href="css/aluno-divertido.css">
+</head>
+<body class="page-acesso page-acesso--aluno">
+  <a href="#painel" class="skip sr-only-focusable"><span>Ir para o formulário</span></a>
+
+  <header class="acesso-topo acesso-topo--central">
+    <a href="index.html" class="acesso-topo__marca">📖 Ler &amp; Aprender</a>
+    <p class="acesso-topo__aviso">Sem senha: primeiro a turma; depois encontre seu nome na lista ou use <strong>Validar nome</strong>. Sempre confirme que é você.</p>
+  </header>
+
+  <main class="acesso-main acesso-main--central" id="painel">
+    <div class="acesso-card acesso-card--ampla acesso-card--elevada">
+      <p class="alu-mascotes" aria-hidden="true">📚 ✨ 🌟 📝</p>
+      <h1 class="painel__titulo painel__titulo--hero">Bora entrar na turma?</h1>
+      <p class="painel__sub">Passo a passo bem rápido: código da sala, seu nome na lista e confirmação.</p>
+
+      <nav class="alu-step-rail" aria-label="Etapas da entrada">
+        <div class="alu-step-rail__item alu-step-rail__item--destaque">
+          <span class="alu-step-dot">1</span>Código turma
+        </div>
+        <span class="alu-step-line" aria-hidden="true"></span>
+        <div class="alu-step-rail__item"><span class="alu-step-dot">2</span>Seu nome</div>
+        <span class="alu-step-line" aria-hidden="true"></span>
+        <div class="alu-step-rail__item"><span class="alu-step-dot">3</span>Confirmar</div>
+      </nav>
+
+      <div id="alu-spinner" class="alu-spinner alu-spinner--book" aria-hidden="true" hidden>
+        <span class="alu-spinner__book" aria-hidden="true">📖</span>
+        <span class="visually-hidden">Carregando</span>
+      </div>
+
+      <div id="step-turma" class="acesso-step acesso-step--card">
+        <div class="acesso-step__badge">1</div>
+        <div class="field">
+          <label for="alu-turma">Código da turma</label>
+          <div class="field--inline-btn">
+            <input type="text" id="alu-turma" name="turmaId" maxlength="40" autocomplete="off" placeholder="Ex.: 5A">
+            <button type="button" class="btn btn--prim btn--tap" id="alu-carregar-turma">Continuar</button>
+          </div>
+          <span class="field__erro" id="alu-turma-erro" role="alert"></span>
+        </div>
+      </div>
+
+      <div id="step-aluno" class="acesso-step acesso-step--card" hidden>
+        <div class="acesso-step__badge">2</div>
+        <div class="field">
+          <label for="alu-busca">Seu nome na turma</label>
+          <p class="field-hint">Digite para ver sugestões ou escreva o nome completo e toque em <strong>Validar nome</strong>.</p>
+          <div class="combo-wrap combo-wrap--destaque">
+            <input
+              type="text"
+              id="alu-busca"
+              autocomplete="off"
+              maxlength="80"
+              placeholder="Buscar ou digitar nome completo…"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-controls="alu-lista"
+              aria-expanded="false">
+            <ul id="alu-lista" class="combo-lista combo-lista--elevada" role="listbox" hidden></ul>
+          </div>
+          <input type="hidden" id="alu-aluno-doc-id" value="">
+          <div class="alu-row-acoes">
+            <button type="button" class="btn btn--outline btn--tap" id="alu-validar-nome">Validar nome na turma</button>
+          </div>
+          <span class="field__erro" id="alu-busca-erro" role="alert"></span>
+        </div>
+      </div>
+
+      <div id="step-confirm" class="acesso-step acesso-confirm acesso-confirm--elevado" hidden>
+        <div class="acesso-step__badge acesso-step__badge--ok">3</div>
+        <p id="alu-confirm-pergunta" class="acesso-confirm__texto" role="status"></p>
+        <div class="acesso-confirm__acoes">
+          <button type="button" class="btn btn--prim btn--tap btn--wide" id="alu-confirm-sim">Sim, sou eu</button>
+          <button type="button" class="btn btn--sec btn--tap" id="alu-confirm-nao">Não</button>
+        </div>
+      </div>
+
+      <p class="form__msg alu-feedback" id="alu-msg" role="status" aria-live="polite"></p>
+
+      <p class="acesso-links-extra">
+        <a href="index.html">← Voltar ao começo</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando5"></script>
+  <script src="js/turmas-firestore.js?v=comando5"></script>
+  <script src="js/sessao.js?v=comando7"></script>
+  <script src="js/acesso-aluno-feedback.js"></script>
+  <script src="js/acesso-aluno.js?v=comando5" defer></script>
+</body>
+</html>

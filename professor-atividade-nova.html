@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova atividade — Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/painel.css?v=comando47">
+</head>
+<body class="page-painel page-painel--professor">
+  <a href="#main" class="skip">Ir para o formulário</a>
+
+  <div class="painel-shell painel-shell--largo">
+    <header class="painel-topo">
+      <a href="painel-professor.html" class="painel-topo__marca">← Painel do professor</a>
+      <p class="painel-topo__user">Nova atividade · <strong id="painel-usuario-email">—</strong></p>
+    </header>
+
+    <div class="toolbar-container" role="region" aria-label="Navegação e ações do painel">
+      <nav class="toolbar-container__nav prof-nav" aria-label="Navegação do professor">
+        <a href="painel-professor.html" class="prof-nav__link" data-prof-nav="comando">Centro de Comando</a>
+      </nav>
+      <div class="toolbar-container__acoes" aria-label="Ações rápidas">
+        <a href="professor-atividade-nova.html" class="toolbar-btn btn-outline" data-prof-acao="atividade">
+          <span class="toolbar-btn__ico" aria-hidden="true">➕</span>
+          <span class="toolbar-btn__txt">Nova atividade</span>
+        </a>
+      </div>
+    </div>
+
+    <main id="main" class="painel-card">
+      <h1 class="painel-titulo-sec" id="atv-pagina-titulo">Cadastrar atividade</h1>
+      <p class="painel-intro">
+        Monte perguntas de interpretação com contexto pedagógico em cada enunciado. Textos longos de leitura ficam no módulo <strong>📚 Leituras</strong>.
+        O <strong>código da turma</strong> deve ser o mesmo da página <em>Alunos da turma</em>.
+        O <strong>rascunho</strong> fica no navegador até publicar ou limpar.
+      </p>
+
+      <form id="form-atividade" class="form-painel" novalidate>
+        <div class="field-painel">
+          <label for="atv-titulo">Título da atividade</label>
+          <input type="text" id="atv-titulo" name="titulo" maxlength="120" placeholder="Ex.: Leitura — notícia do dia">
+          <span class="field-painel__erro" id="atv-titulo-erro" role="alert"></span>
+        </div>
+        <div class="field-painel">
+          <label for="atv-turma">Turma</label>
+          <select id="atv-turma" name="turmaId" class="monitor-select">
+            <option value="">Carregando turmas…</option>
+          </select>
+          <span class="field-painel__erro" id="atv-turma-erro" role="alert"></span>
+          <p class="field-hint">Cadastre turmas no <a href="painel-professor.html">Centro de Comando</a> se a lista estiver vazia.</p>
+        </div>
+        <!-- Campo legado: preserva texto antigo no Firestore sem exibir na criação. -->
+        <textarea id="atv-texto" name="texto" hidden aria-hidden="true"></textarea>
+
+        <div class="field-painel field-painel--inline-pontos">
+          <label for="atv-pontos-padrao">Pontos padrão por questão</label>
+          <input type="number" id="atv-pontos-padrao" name="pontuacaoPadrao" min="1" max="100" step="1" value="10" aria-describedby="atv-pontos-hint">
+          <p class="field-hint" id="atv-pontos-hint">Valor usado quando a questão não tiver pontuação própria. Você pode definir pontos diferentes em cada pergunta.</p>
+        </div>
+
+        <details class="atv-material-apoio" id="atv-material-apoio-wrap">
+          <summary class="atv-material-apoio__titulo">📖 Material de Apoio (Opcional)</summary>
+          <div class="atv-material-apoio__corpo">
+            <p class="field-hint atv-material-apoio__hint">Texto, imagem ou conteúdo complementar para consulta durante a atividade. Leituras longas continuam no módulo <strong>Biblioteca de Textos</strong>.</p>
+            <div id="atv-material-apoio-editor" class="rich-editor rich-editor--compact" aria-label="Editor do material de apoio">
+              <div class="rich-editor__toolbar" role="toolbar" aria-label="Ferramentas do material de apoio">
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="bold" aria-label="Negrito" title="Negrito"><span aria-hidden="true">B</span></button>
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="italic" aria-label="Itálico" title="Itálico"><span aria-hidden="true">I</span></button>
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="insertUnorderedList" aria-label="Lista" title="Lista"><span aria-hidden="true">•</span></button>
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="insertOrderedList" aria-label="Lista numerada" title="Lista numerada"><span aria-hidden="true">1.</span></button>
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="link" aria-label="Link" title="Link"><span aria-hidden="true">🔗</span></button>
+                <button type="button" class="rich-btn rich-btn--compacto" data-cmd="image" aria-label="Inserir imagem" title="Inserir imagem"><span aria-hidden="true">🖼️</span></button>
+                <input type="file" id="atv-material-apoio-img" accept="image/*" hidden>
+              </div>
+              <div id="atv-material-apoio-area" class="rich-editor__area rich-editor__area--placeholder" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Contexto, trecho ou imagem de apoio para as questões…"></div>
+              <p class="questao-enunciado-erro field-painel__erro" id="atv-material-apoio-erro" role="alert"></p>
+            </div>
+            <textarea id="atv-material-apoio-hidden" data-rich-hidden hidden aria-hidden="true"></textarea>
+          </div>
+        </details>
+
+        <div class="questoes-toolbar">
+          <div>
+            <h2 class="painel-titulo-sec questoes-toolbar__titulo">Perguntas de avaliação</h2>
+            <p class="questoes-toolbar__hint">Cada pergunta pode ter trecho, imagem ou contexto no <strong>enunciado</strong>. Preencha <strong>pelo menos 2 alternativas</strong> e defina o <strong>gabarito</strong>.</p>
+          </div>
+          <button type="button" class="btn-secundario btn-secundario--compacto" id="btn-add-questao" title="Adiciona mais uma pergunta">+ Adicionar pergunta</button>
+        </div>
+
+        <div id="lista-questoes" class="lista-questoes" aria-live="polite"></div>
+        <p class="field-painel__erro" id="atv-questoes-erro" role="alert"></p>
+
+        <p class="form-painel__msg" id="atv-msg" role="status" aria-live="polite"></p>
+
+        <aside class="atv-preview painel-card painel-card--preview" aria-labelledby="atv-preview-titulo">
+          <h2 id="atv-preview-titulo" class="painel-titulo-sec painel-titulo-sec--menor">Pré-visualização</h2>
+          <div id="atv-preview-conteudo" class="atv-preview__box">
+            <p class="lista-vazia">Preencha título, turma e perguntas para ver a prévia.</p>
+          </div>
+        </aside>
+
+        <div class="form-painel__acoes form-painel__acoes--wrap">
+          <p class="form-painel__msg form-painel__msg--acoes" id="atv-status-acoes" role="alert" aria-live="assertive"></p>
+          <button type="button" class="btn-secundario" id="btn-rascunho">Salvar rascunho (temporário)</button>
+          <button type="button" class="btn-secundario" id="btn-salvar-modelo">Salvar como modelo</button>
+          <button type="button" class="btn-secundario" id="btn-limpar-rascunho">Limpar rascunho</button>
+          <span class="form-acoes-spacer"></span>
+          <a href="painel-professor.html" class="btn-secundario">Cancelar</a>
+          <button type="submit" class="btn-primario" id="atv-submit">Publicar atividade</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando9"></script>
+  <script src="js/turmas-firestore.js?v=comando4"></script>
+  <script src="js/atividades-firestore.js?v=comando10"></script>
+  <script src="js/sessao.js?v=comando9"></script>
+  <script src="js/rich-text-utils.js?v=comando5"></script>
+  <script src="js/ui-feedback.js"></script>
+  <script src="js/prof-nav.js?v=2"></script>
+  <script src="js/professor-atividade-nova.js?v=comando14" defer></script>
+</body>
+</html>

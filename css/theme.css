@@ -1,0 +1,75 @@
+/**
+ * Ler & Aprender — design tokens (paleta e componentes base)
+ * Incluir ANTES de acesso.css, painel.css ou inicio.css
+ */
+
+:root {
+  /* Paleta obrigatória */
+  --color-blue: #4f46e5;
+  --color-purple: #7c3aed;
+  --color-green: #22c55e;
+  --color-yellow: #facc15;
+  --color-red: #ef4444;
+  --color-bg: #f8fafc;
+  --color-text: #0f172a;
+  /* Derivados */
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-blue-hover: #4338ca;
+  --color-purple-hover: #6d28d9;
+  --color-blue-soft: #eef2ff;
+  --color-purple-soft: #f5f3ff;
+  --color-green-soft: #dcfce7;
+  --color-yellow-soft: #fef9c3;
+  --color-red-soft: #fee2e2;
+  --color-white: #ffffff;
+
+  /* Tipografia */
+  --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-display: "Nunito", system-ui, sans-serif;
+
+  /* Raio e sombra */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 4px 14px rgba(79, 70, 229, 0.07), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 12px 40px rgba(79, 70, 229, 0.09), 0 4px 14px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 22px 60px rgba(79, 70, 229, 0.12);
+  --ring-focus: 0 0 0 3px rgba(79, 70, 229, 0.35);
+
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --transition: 0.2s var(--ease-out);
+  --transition-slow: 0.35s var(--ease-out);
+
+  /* Compatível com folhas antigas (acesso.css / painel.css) */
+  --bg: var(--color-bg);
+  --superficie: var(--color-white);
+  --texto: var(--color-text);
+  --texto-suave: var(--color-muted);
+  --primaria: var(--color-blue);
+  --primaria-hover: var(--color-blue-hover);
+  --primaria-muda: var(--color-blue-soft);
+  --borda: var(--color-border);
+  --erro: var(--color-red);
+  --erro-bg: var(--color-red-soft);
+  --ok: var(--color-green);
+  --fonte-corpo: var(--font-body);
+  --fonte-titulo: var(--font-display);
+  --raio: var(--radius-md);
+  --sombra: var(--shadow-md);
+  --aluno: var(--color-green);
+  --aluno-bg: var(--color-green-soft);
+  --prof: var(--color-purple);
+  --prof-bg: var(--color-purple-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0.01ms;
+    --transition-slow: 0.01ms;
+  }
+}

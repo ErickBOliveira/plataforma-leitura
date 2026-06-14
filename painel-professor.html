@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Comando — Professor · Ler &amp; Aprender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css?v=comando2">
+  <link rel="stylesheet" href="css/painel.css?v=comando46">
+</head>
+<body class="page-painel page-painel--professor page-painel--comando">
+  <a href="#main" class="skip">Ir para o conteúdo</a>
+
+  <div class="painel-shell painel-shell--largo">
+    <header class="painel-topo painel-topo--comando">
+      <a href="index.html" class="painel-topo__marca">📖 Ler &amp; Aprender</a>
+      <p class="painel-topo__saudacao" id="prof-saudacao" aria-live="polite">Olá, Professor 👋</p>
+      <div class="painel-topo__dir">
+        <p class="painel-topo__user">Logado como <strong id="painel-usuario-email">—</strong></p>
+        <div class="painel-topo__nav">
+          <button type="button" class="btn-sair btn-sair--discreto" id="btn-sair">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="toolbar-container" role="region" aria-label="Navegação e ações do painel">
+      <nav class="toolbar-container__nav prof-nav" aria-label="Navegação do professor">
+        <a href="painel-professor.html" class="prof-nav__link" data-prof-nav="comando">Centro de Comando</a>
+      </nav>
+      <div class="toolbar-container__acoes" aria-label="Ações rápidas">
+        <a href="professor-atividade-nova.html" class="toolbar-btn btn-outline" data-prof-acao="atividade" id="btn-criar-atividade">
+          <span class="toolbar-btn__ico" aria-hidden="true">➕</span>
+          <span class="toolbar-btn__txt">Nova atividade</span>
+        </a>
+        <button type="button" class="toolbar-btn btn-outline" id="btn-nova-turma">
+          <span class="toolbar-btn__ico" aria-hidden="true">👥</span>
+          <span class="toolbar-btn__txt">Nova turma</span>
+        </button>
+        <button type="button" class="toolbar-btn btn-outline" id="btn-acao-importar">
+          <span class="toolbar-btn__ico" aria-hidden="true">📥</span>
+          <span class="toolbar-btn__txt">Importar alunos</span>
+        </button>
+        <button type="button" class="toolbar-btn btn-outline" id="btn-relatorio-geral">
+          <span class="toolbar-btn__ico" aria-hidden="true">📊</span>
+          <span class="toolbar-btn__txt">Relatório geral</span>
+        </button>
+      </div>
+    </div>
+
+    <main id="main">
+      <section class="prof-dashboard-hero" aria-labelledby="titulo-dash-prof">
+        <div class="prof-dashboard-hero__text">
+          <h1 id="titulo-dash-prof" class="prof-dashboard-hero__titulo">Centro de Comando Educacional</h1>
+          <p class="prof-dashboard-hero__sub">Turmas, alunos, atividades e acompanhamento em um só lugar.</p>
+          <p class="painel-versao" id="painel-versao-tag" hidden aria-hidden="true">v2-comando</p>
+        </div>
+        <div class="dash-kpi-grid dash-kpi-grid--5" aria-label="Indicadores gerais" id="dash-kpi-grid">
+          <article class="dash-kpi dash-kpi--borda-turmas">
+            <span class="dash-kpi__ico" aria-hidden="true">🏫</span>
+            <div class="dash-kpi__body">
+              <span class="dash-kpi__val" id="dash-kpi-turmas">0</span>
+              <span class="dash-kpi__lab">Total de turmas</span>
+            </div>
+          </article>
+          <article class="dash-kpi dash-kpi--borda-alunos">
+            <span class="dash-kpi__ico" aria-hidden="true">👥</span>
+            <div class="dash-kpi__body">
+              <span class="dash-kpi__val" id="dash-kpi-alunos">0</span>
+              <span class="dash-kpi__lab">Total de alunos</span>
+            </div>
+          </article>
+          <article class="dash-kpi dash-kpi--borda-atividades">
+            <span class="dash-kpi__ico" aria-hidden="true">📚</span>
+            <div class="dash-kpi__body">
+              <span class="dash-kpi__val" id="dash-kpi-total-atividades">0</span>
+              <span class="dash-kpi__lab">Atividades criadas</span>
+            </div>
+          </article>
+          <article class="dash-kpi dash-kpi--borda-respostas">
+            <span class="dash-kpi__ico" aria-hidden="true">✅</span>
+            <div class="dash-kpi__body">
+              <span class="dash-kpi__val" id="dash-kpi-respostas">0</span>
+              <span class="dash-kpi__lab">Respostas recebidas</span>
+            </div>
+          </article>
+          <article class="dash-kpi dash-kpi--borda-media">
+            <span class="dash-kpi__ico" aria-hidden="true">📊</span>
+            <div class="dash-kpi__body">
+              <span class="dash-kpi__val" id="dash-kpi-media">—</span>
+              <span class="dash-kpi__lab">Média geral</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="prof-dashboard-main" aria-label="Resumo de turmas, atividades, leituras e acompanhamento">
+          <section class="painel-card painel-card--secao prof-dashboard-bloco prof-dashboard-bloco--turmas" aria-labelledby="titulo-turmas">
+            <div class="secao-cab">
+              <h2 class="painel-titulo-sec" id="titulo-turmas">Minhas turmas</h2>
+              <button type="button" class="secao-link" id="link-ver-todas-turmas">Ver todas →</button>
+            </div>
+            <div class="turmas-toolbar" id="turmas-toolbar">
+              <div class="turmas-toolbar__busca">
+                <label class="visually-hidden" for="turmas-busca">Buscar turma</label>
+                <input type="search" id="turmas-busca" class="turmas-busca-input" placeholder="Buscar turma..." autocomplete="off" maxlength="80">
+              </div>
+              <div class="turmas-toolbar__ordem">
+                <label class="monitor-label" for="turmas-ordenacao">Ordenar</label>
+                <select id="turmas-ordenacao" class="monitor-select monitor-select--dropdown">
+                  <option value="recentes">Mais recentes</option>
+                  <option value="ativas">Mais ativas</option>
+                  <option value="alfabetica">Ordem alfabética</option>
+                </select>
+              </div>
+            </div>
+            <div id="grid-turmas-prof" class="grid-turmas grid-turmas--preview"></div>
+            <p class="lista-vazia lista-vazia--estado" id="vazio-turmas-busca" hidden role="status">Nenhuma turma encontrada para esta busca.</p>
+            <p class="lista-vazia lista-vazia--estado" id="vazio-turmas-prof" hidden>Nenhum item cadastrado ainda.<span class="lista-vazia__hint">Clique em «Nova turma» para começar.</span></p>
+          </section>
+
+          <section class="painel-card painel-card--secao prof-dashboard-bloco prof-dashboard-bloco--atividades" aria-labelledby="titulo-atividades">
+            <div class="secao-cab">
+              <h2 class="painel-titulo-sec" id="titulo-atividades">Minhas atividades</h2>
+              <button type="button" class="secao-link" id="link-ver-historico-atv">Ver histórico completo →</button>
+            </div>
+            <ul class="lista-atividades" id="lista-atividades-prof"></ul>
+            <div class="empty-state empty-state--card" id="vazio-atividades-prof" hidden role="status">
+              <span class="empty-state__ico" aria-hidden="true">📚</span>
+              <p class="empty-state__titulo">Nenhuma atividade criada ainda.</p>
+              <p class="empty-state__texto">Clique em <a href="professor-atividade-nova.html" class="empty-state__link">+ Criar atividade</a> para começar.</p>
+            </div>
+          </section>
+
+          <section class="painel-card painel-card--secao prof-dashboard-bloco prof-dashboard-bloco--leituras" aria-labelledby="titulo-leituras">
+            <div class="secao-cab secao-cab--wrap">
+              <h2 class="painel-titulo-sec" id="titulo-leituras">Biblioteca de Textos</h2>
+              <div class="secao-cab__acoes">
+                <button type="button" class="btn-primario btn-primario--compacto" id="btn-nova-leitura">+ Nova Leitura</button>
+                <button type="button" class="secao-link" id="link-ver-todas-leituras">Ver todas →</button>
+              </div>
+            </div>
+            <div class="ranking-toolbar leituras-toolbar">
+              <label class="monitor-label" for="leituras-turma-select">Turma</label>
+              <select id="leituras-turma-select" class="monitor-select monitor-select--dropdown"></select>
+            </div>
+            <p id="leituras-loading" class="monitor-loading leituras-loading" hidden>
+              <span class="monitor-spinner" aria-hidden="true"></span> Carregando leituras…
+            </p>
+            <div id="lista-leituras-prof" class="grid-leituras" aria-live="polite"></div>
+            <p class="lista-vazia lista-vazia--estado" id="vazio-leituras-prof" hidden role="status">Nenhum item cadastrado ainda.<span class="lista-vazia__hint">Publique uma leitura com o botão acima.</span></p>
+          </section>
+
+          <div class="prof-dashboard-apoio" aria-label="Acompanhamento e destaques">
+          <section class="painel-card painel-card--secao painel-card--monitor prof-dashboard-bloco prof-dashboard-bloco--acompanhamento" aria-labelledby="titulo-monitor">
+            <h2 class="painel-titulo-sec" id="titulo-monitor">Acompanhamento por atividade</h2>
+            <p class="painel-intro painel-intro--compacto">Escolha uma atividade para ver desempenho, pendentes e liberar nova tentativa.</p>
+
+            <div id="monitor-sem-atividades" hidden role="status" aria-hidden="true"></div>
+
+            <div id="monitor-toolbar-wrap" class="monitor-toolbar" hidden>
+              <label class="monitor-label" for="monitor-atividade">Atividade</label>
+              <select id="monitor-atividade" class="monitor-select"></select>
+            </div>
+
+            <div id="monitor-empty-state" class="empty-state empty-state--monitor empty-state--monitor-centro" hidden role="status">
+              <span class="empty-state__ico" aria-hidden="true">💬</span>
+              <p class="empty-state__titulo" id="monitor-empty-titulo">Selecione uma atividade</p>
+              <p class="empty-state__texto empty-state__texto--opcional" id="monitor-empty-texto" hidden></p>
+            </div>
+
+            <p id="monitor-loading" class="monitor-loading" hidden>
+              <span class="monitor-spinner" aria-hidden="true"></span> Carregando dados…
+            </p>
+            <p id="monitor-erro" class="painel-alerta painel-alerta--erro" hidden role="alert"></p>
+            <div id="monitor-stats" class="monitor-insights" hidden aria-label="Indicadores da atividade"></div>
+            <div id="monitor-tabela-wrap" class="monitor-tabela-wrap" hidden>
+              <h3 class="monitor-subtitulo">Desempenho completo</h3>
+              <table class="monitor-tabela">
+                <thead>
+                  <tr>
+                    <th>Aluno</th>
+                    <th>Acertos</th>
+                    <th>Status de Apoio</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="monitor-corpo-tabela"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="painel-card painel-card--secao prof-dashboard-bloco prof-dashboard-bloco--ranking" aria-labelledby="titulo-ranking">
+            <h2 class="painel-titulo-sec" id="titulo-ranking">Destaques da turma</h2>
+            <p class="painel-intro painel-intro--compacto">Top 3 por participação e desempenho (saudável — sem expor lista completa).</p>
+            <div class="ranking-toolbar">
+              <label class="monitor-label" for="ranking-turma-select">Turma</label>
+              <select id="ranking-turma-select" class="monitor-select monitor-select--dropdown"></select>
+            </div>
+            <div id="podium-top3" class="podium-top3 podium-top3--sidebar" aria-live="polite"></div>
+            <p class="lista-vazia lista-vazia--estado" id="vazio-ranking" hidden>Nenhum item cadastrado ainda.<span class="lista-vazia__hint">Selecione uma turma com alunos e respostas para ver o pódio.</span></p>
+          </section>
+          </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal importar lista de alunos -->
+  <div id="modal-importar-turma" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-importar-titulo" aria-modal="true">
+      <h3 id="modal-importar-titulo" class="ui-modal__titulo">👥 Importar lista de alunos</h3>
+      <div class="field-painel">
+        <label for="modal-importar-turma-select">Turma</label>
+        <select id="modal-importar-turma-select" class="select-painel monitor-select"></select>
+      </div>
+      <div class="field-painel">
+        <label for="modal-importar-texto">Nomes dos alunos</label>
+        <textarea id="modal-importar-texto" class="modal-importar-textarea" rows="8" maxlength="120000" placeholder="Digite um nome por linha...&#10;&#10;Exemplo:&#10;Ana Silva&#10;Carlos Eduardo&#10;Mariana Costa"></textarea>
+      </div>
+      <p class="importar-aviso-pedagogico">Os alunos serão cadastrados automaticamente nesta turma e poderão acessar as atividades utilizando apenas o nome e o código da turma.</p>
+      <p class="form-painel__msg" id="modal-importar-msg" role="status" aria-live="polite"></p>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="modal-importar-cancelar">Cancelar</button>
+        <button type="button" class="btn-primario" id="modal-importar-confirmar">Cadastrar alunos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal relatório geral -->
+  <div id="modal-relatorio" class="ui-modal-inline ui-modal-inline--anim" hidden aria-modal="true">
+    <div class="ui-modal-inline__card ui-modal-inline__card--relatorio" role="dialog" aria-labelledby="modal-relatorio-titulo">
+      <div id="relatorio-print-area" class="relatorio-print-area">
+        <header class="relatorio-cab">
+          <h3 id="modal-relatorio-titulo" class="ui-modal__titulo">📊 Relatório de Desempenho Educacional</h3>
+          <p class="relatorio-cab__meta" id="relatorio-meta-linha" aria-live="polite"></p>
+        </header>
+
+        <div class="relatorio-filtros relatorio-no-print" aria-label="Filtros do relatório">
+          <div class="relatorio-filtros__campo">
+            <label class="monitor-label" for="relatorio-filtro-turma">Turma</label>
+            <select id="relatorio-filtro-turma" class="monitor-select monitor-select--dropdown">
+              <option value="todas">Todas as turmas</option>
+            </select>
+          </div>
+          <div class="relatorio-filtros__campo">
+            <label class="monitor-label" for="relatorio-filtro-periodo">Período</label>
+            <select id="relatorio-filtro-periodo" class="monitor-select monitor-select--dropdown">
+              <option value="tudo">Todo o período</option>
+              <option value="30d">Últimos 30 dias</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="modal-relatorio-corpo" class="relatorio-geral" aria-live="polite"></div>
+      </div>
+
+      <div class="form-painel__acoes form-painel__acoes--wrap relatorio-no-print">
+        <button type="button" class="btn-secundario" id="modal-relatorio-fechar">Fechar</button>
+        <button type="button" class="btn-secundario" id="modal-relatorio-monitor">Ver acompanhamento</button>
+        <button type="button" class="btn-primario" id="modal-relatorio-imprimir">🖨️ Emitir Relatório</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal todas as turmas -->
+  <div id="modal-turmas-todas" class="ui-modal-inline" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-turmas-todas-titulo" aria-modal="true">
+      <h3 id="modal-turmas-todas-titulo" class="ui-modal__titulo">🏫 Todas as turmas</h3>
+      <p class="field-hint" id="modal-turmas-todas-sub">Lista completa das suas turmas cadastradas.</p>
+      <div id="modal-turmas-todas-corpo" class="modal-lista-scroll"></div>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="modal-turmas-todas-fechar">Fechar</button>
+        <button type="button" class="btn-primario" id="modal-turmas-todas-nova">+ Nova turma</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal histórico de atividades -->
+  <div id="modal-atividades-historico" class="ui-modal-inline" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-atividades-historico-titulo" aria-modal="true">
+      <h3 id="modal-atividades-historico-titulo" class="ui-modal__titulo">📚 Histórico de atividades</h3>
+      <p class="field-hint" id="modal-atividades-historico-sub">Todas as atividades criadas, da mais recente à mais antiga.</p>
+      <div class="modal-lista-scroll">
+        <ul class="lista-atividades" id="lista-atividades-modal"></ul>
+      </div>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="modal-atividades-historico-fechar">Fechar</button>
+        <a href="professor-atividade-nova.html" class="btn-primario">+ Nova atividade</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal nova leitura -->
+  <div id="modal-leitura-nova" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo ui-modal-inline__card--leitura" role="dialog" aria-labelledby="modal-leitura-nova-titulo" aria-modal="true">
+      <h3 id="modal-leitura-nova-titulo" class="ui-modal__titulo">📚 Nova Leitura</h3>
+      <form id="form-leitura-nova" class="form-painel" novalidate>
+        <div class="field-painel">
+          <label for="leit-titulo">Título</label>
+          <input type="text" id="leit-titulo" name="titulo" maxlength="120" placeholder="Ex.: Conto da semana" required>
+          <span class="field-painel__erro" id="leit-titulo-erro" role="alert"></span>
+        </div>
+        <div class="field-painel">
+          <label for="leit-descricao">Descrição curta</label>
+          <input type="text" id="leit-descricao" name="descricao" maxlength="200" placeholder="Resumo em uma linha para os alunos" required>
+          <span class="field-painel__erro" id="leit-descricao-erro" role="alert"></span>
+        </div>
+        <div class="field-painel">
+          <label for="leit-turma">Turma</label>
+          <select id="leit-turma" name="turmaId" class="select-painel monitor-select" required>
+            <option value="">Carregando turmas…</option>
+          </select>
+          <span class="field-painel__erro" id="leit-turma-erro" role="alert"></span>
+        </div>
+        <div class="field-painel">
+          <label for="leit-tipo">Tipo de Leitura</label>
+          <select id="leit-tipo" name="tipoConteudo" class="select-painel monitor-select">
+            <option value="html">Texto do Editor</option>
+            <option value="link">📚 Material de leitura</option>
+          </select>
+        </div>
+        <div class="field-painel">
+          <label for="leit-status">Status</label>
+          <select id="leit-status" name="status" class="select-painel monitor-select">
+            <option value="publicado">Publicado (visível para alunos)</option>
+            <option value="rascunho">Rascunho (somente professor)</option>
+          </select>
+        </div>
+
+        <div id="leit-bloco-html" class="leitura-campo-dinamico">
+          <div class="field-painel">
+            <label for="leit-texto">Conteúdo</label>
+            <div class="rich-editor" aria-label="Editor rico de texto da leitura">
+              <div class="rich-editor__toolbar" id="leit-editor-toolbar" role="toolbar" aria-label="Ferramentas do editor">
+                <button type="button" class="rich-btn" data-cmd="bold" aria-label="Negrito" title="Negrito">
+                  <span aria-hidden="true">B</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="italic" aria-label="Itálico" title="Itálico">
+                  <span aria-hidden="true">I</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="underline" aria-label="Sublinhado" title="Sublinhado">
+                  <span aria-hidden="true">U</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="formatBlock" data-value="p" aria-label="Parágrafo" title="Parágrafo">
+                  <span aria-hidden="true">¶</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="formatBlock" data-value="h3" aria-label="Título" title="Título">
+                  <span aria-hidden="true">H3</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="insertUnorderedList" aria-label="Lista" title="Lista">
+                  <span aria-hidden="true">•</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="insertOrderedList" aria-label="Lista numerada" title="Lista numerada">
+                  <span aria-hidden="true">1.</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="highlight" aria-label="Destaque" title="Destaque">
+                  <span aria-hidden="true">✨</span>
+                </button>
+                <button type="button" class="rich-btn" data-cmd="image" aria-label="Inserir imagem" title="Inserir imagem">
+                  <span aria-hidden="true">🖼️</span>
+                </button>
+                <input type="file" id="leit-editor-img" accept="image/*" hidden>
+              </div>
+              <div
+                id="leit-editor"
+                class="rich-editor__area"
+                contenteditable="true"
+                role="textbox"
+                aria-multiline="true"
+                aria-describedby="leit-texto-erro leit-editor-ajuda">
+              </div>
+              <p class="rich-editor__ajuda" id="leit-editor-ajuda">
+                Compatível com textos simples e HTML formatado. Conteúdo sanitizado ao salvar.
+              </p>
+            </div>
+            <textarea id="leit-texto" name="conteudoHtml" hidden></textarea>
+            <span class="field-painel__erro" id="leit-texto-erro" role="alert"></span>
+          </div>
+        </div>
+
+        <div id="leit-bloco-link" class="leitura-campo-dinamico" hidden>
+          <div class="field-painel">
+            <label for="leit-link-url">Link do material</label>
+            <input type="url" id="leit-link-url" name="linkUrl" placeholder="Cole aqui o link do Google Drive, PDF público, YouTube ou site educativo..." inputmode="url">
+            <span class="field-painel__erro" id="leit-link-erro" role="alert"></span>
+          </div>
+        </div>
+
+        <p class="form-painel__msg" id="leit-msg" role="status" aria-live="polite"></p>
+
+        <p class="modal-leitura-legal">Envie apenas conteúdos próprios, autorizados ou de domínio público.</p>
+
+        <div class="form-painel__acoes">
+          <button type="button" class="btn-secundario" id="leit-cancelar">Cancelar</button>
+          <button type="submit" class="btn-primario" id="leit-salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal todas as leituras -->
+  <div id="modal-leituras-todas" class="ui-modal-inline ui-modal-inline--anim" hidden>
+    <div class="ui-modal-inline__card ui-modal-inline__card--largo" role="dialog" aria-labelledby="modal-leituras-todas-titulo" aria-modal="true">
+      <h3 id="modal-leituras-todas-titulo" class="ui-modal__titulo">📚 Todas as leituras</h3>
+      <p class="field-hint" id="modal-leituras-todas-sub">Leituras cadastradas, da mais recente à mais antiga.</p>
+      <div class="modal-lista-scroll">
+        <div class="grid-leituras grid-leituras--modal" id="lista-leituras-modal"></div>
+      </div>
+      <div class="form-painel__acoes">
+        <button type="button" class="btn-secundario" id="modal-leituras-todas-fechar">Fechar</button>
+        <button type="button" class="btn-primario" id="modal-leituras-todas-nova">+ Nova Leitura</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal turma (criar/editar) -->
+  <div id="modal-turma" class="ui-modal-inline" hidden>
+    <div class="ui-modal-inline__card" role="dialog" aria-labelledby="modal-turma-titulo">
+      <h3 id="modal-turma-titulo" class="ui-modal__titulo">Nova turma</h3>
+      <form id="form-turma-modal" class="form-painel" novalidate>
+        <div class="field-painel">
+          <label for="modal-turma-nome">Nome da turma</label>
+          <input type="text" id="modal-turma-nome" maxlength="80" placeholder="Ex.: 5º Ano A" required>
+        </div>
+        <div class="field-painel">
+          <label for="modal-turma-codigo">Código da turma</label>
+          <input type="text" id="modal-turma-codigo" maxlength="40" placeholder="Ex.: 5A" autocomplete="off" required>
+          <p class="field-hint">Os alunos usam este código na entrada (sem senha).</p>
+        </div>
+        <p class="form-painel__msg" id="modal-turma-msg" role="status"></p>
+        <div class="form-painel__acoes">
+          <button type="button" class="btn-secundario" id="modal-turma-cancelar">Cancelar</button>
+          <button type="submit" class="btn-primario" id="modal-turma-salvar">Salvar turma</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js?v=comando9"></script>
+  <script src="js/turmas-firestore.js?v=comando15"></script>
+  <script src="js/atividades-firestore.js?v=comando10"></script>
+  <script src="js/respostas-firestore.js?v=comando19"></script>
+  <script src="js/leituras-firestore.js?v=leituras3"></script>
+  <script src="js/sessao.js?v=comando9"></script>
+  <script src="js/rich-text-utils.js"></script>
+  <script src="js/ui-feedback.js"></script>
+  <script src="js/prof-nav.js?v=2"></script>
+  <script src="js/gamificacao.js?v=comando8"></script>
+  <script src="js/painel-professor.js?v=comando28" defer></script>
+  <script src="js/leituras-professor.js?v=leituras3" defer></script>
+</body>
+</html>
